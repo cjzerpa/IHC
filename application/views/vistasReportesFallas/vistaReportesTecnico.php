@@ -16,7 +16,7 @@
 	<?php sleep(3);?>
 	
 	<div align="center">
-		<a href= <?=site_url('/_reportes/logout')?> class="btn btn-danger btn-xs " align="" > Salir </a>
+		<a href= <?=site_url('/_reportes/logout')?> onclick="javascript:return salirr();" class="btn btn-danger btn-xs " align="" > Salir </a>
 	</div>
 	
 	<ul><div align="left">
@@ -57,7 +57,7 @@
 						echo '<td>'.$row->Descrip.'</td>';
 						echo '<td>'.$row->Estado.'</td>';
 						echo '<td>'.$row->Depto.'</td>';
-						echo '<td> <a href="'.site_url('/_reportes/preModificarReporte/'.$row->Id_repor.'').'" class="btn btn-warning btn-xs">Modificar</a> <a href="'.site_url('/_reportes/eliminarReporte/'.$row->Id_repor.'').'" class="btn btn-danger btn-xs">Eliminar</a> </td>';
+						echo '<td> <a href="'.site_url('/_reportes/preModificarReporte/'.$row->Id_repor.'').'" class="btn btn-warning btn-xs">Modificar</a> <a href="'.site_url('/_reportes/eliminarReporte/'.$row->Id_repor.'').'" onclick="javascript:return asegurar();" class="btn btn-danger btn-xs">Eliminar</a> </td>';
 					}
 
 				}
@@ -67,6 +67,22 @@
 					
 				
 			?>
+
+			<script>
+				function asegurar ()
+  				{
+      				rc = confirm("Seguro que desea Eliminar?");
+      				return rc;
+  				}
+			</script>
+
+			<script>
+				function salirr ()
+  				{
+      				rc = confirm("Seguro que desea Salir?");
+      				return rc;
+  				}
+			</script>
 		<script src="<?php echo base_url('js/jquery-1.11.js');?>"></script>
 
 <script src="<?php echo base_url('js/bootstrap.min.js') ;?>"></script>
