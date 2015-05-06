@@ -11,8 +11,9 @@
 <body >
 	
 	<div align="center">
-		<a href= <?=site_url('/_reportes/logout')?> class="btn btn-danger btn-xs " align="" > Salir </a>
+		<a href= <?=site_url('/_reportes/logout')?> onclick="javascript:return salirr();" class="btn btn-danger btn-xs " align="" > Salir </a>
 	</div>
+	
 
 	<ul><div align="left">
 		> <a href= <?= site_url('/_reportes')?>> Reportes  </a><br>
@@ -62,6 +63,14 @@
 	echo '</div>';
 		
 		?>
+
+			<script>
+				function salirr ()
+  				{
+      				rc = confirm("Seguro que desea Salir?");
+      				return rc;
+  				}
+			</script>
 		<script src="<?php echo base_url('js/jquery-1.11.js');?>"></script>
 
 	<script src="<?php echo base_url('js/bootstrap.min.js') ;?>"></script>
