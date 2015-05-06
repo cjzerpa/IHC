@@ -1,0 +1,44 @@
+Configuracion de Codeigniter para trabajar con Xampp
+
+-Instalar en el htdocs de xampp (se puede instalar dentro de un subdirectorio en el htdocs, es opcional,
+en dicho caso se agrega el nombre del subdirectorio para las rutas)
+
+*Luego de Instalar*
+
+-Configuraciones escenciales:
+nota: en mi caso cree un subdirectorio llamado Codeigniter dentro de htdocs por eso aparece dentro de la ruta
+
+	*Abrir archivo = \Codeigniter\application\autoload.php y modificar las siguientes variables con los siguientes valores:
+	
+		-$autoload['libraries'] = array('database','session');//Esto es para precargar las librerias desde un principio y quedan disponibles globalmente
+		
+		-$autoload['helper'] = array('url','date');//Precargando helper para tenerlos disponibles globalmente tambien
+
+	*Abrir archivo = \Codeigniter\application\config.php y modificar las siguientes variables con los siguientes valores:
+
+		-$config['base_url']	= 'http://localhost/'; //Esto es para trabajar con el servidor local
+		
+		-$config['index_page'] = ''; //Para omitir el index.php en la rutas que utilizamos
+
+		-$config['encryption_key'] = hex2bin('1234'); //Es requerido para poder trabajar con las sesiones
+					el valor hex2bin('1234') es de eleccion personal
+	
+	*Abrir archivo = \Codeigniter\application\database.php y modificar las siguientes variables con los siguientes valores:
+		
+		$db['default']['hostname'] = 'localhost';//servidor a utilizar
+		$db['default']['username'] = 'root'; //El nombre de usuario para tu servidor
+		$db['default']['password'] = '';//contraseña
+		$db['default']['database'] = 'fallas';//Base de datos a utilizar
+
+		-Los demas valores de este archivo quedan intactos
+
+	*Abrir archivo = \Codeigniter\application\routes.php y modificar las siguientes variables con los siguientes valores:
+
+		-$route['default_controller'] = "Nombre_del_controlador";//Esto indica cual controlador se ejecutara por default cuando ingresemos al principal de nuestra pagina. Cabe la aclaratoria que es el nombre que se le ha colocado a la clase y no al nombre del archivo
+
+	*¿Como eliminar index.php de las url que utilizamos?
+		Crear un archivo con el nombre .htaccess y escribir en el:
+
+			RewriteEngine on
+			RewriteCond $1 !^(index.php|css|js|images) //Esto omite de la url todos los indes
+			RewriteRule ^(.*)$ /Codeigniter/index.php/$1 [L] //Codeigniter/index.php es el nombre de la ruta donde se encuentra el index
